@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
   MPI_Comm_size(MPI_COMM_WORLD, &nproc);
 
   int data;
-  printf("Initialize program by rank %d\n",irank);
+  //printf("Initialize program by rank %d\n",irank);
 
     // All processes send the go ahead message except the last process
   if (irank == nproc-1) {
@@ -54,10 +54,10 @@ int main(int argc, char* argv[])
   
     // If not the first process, wait for permission to proceed
   if(irank==0) {
-  MPI_Recv(&data, 1, MPI_INT, nproc-1, 101, MPI_COMM_WORLD, 
+  MPI_Recv(&data, 1, MPI_INT, nproc-1, 100, MPI_COMM_WORLD, 
 	     MPI_STATUS_IGNORE);
     printf("Rank %d has received message with data %d from rank %d\n",
-	   irank, data, irank-1);
+	   irank, data, nproc-1);
 	   }
 
   if (irank > 0) {
