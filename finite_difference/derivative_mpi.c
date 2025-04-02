@@ -106,9 +106,9 @@ int main(int argc, char * argv[]){
   MPI_Reduce(timing_array_local, timing_array_global, ntimers, MPI_DOUBLE, MPI_MAX, root_rank, MPI_COMM_WORLD);
   
   if(irank==root_rank){
-    printf("%d\t%d",nproc,npts);
+    printf("nproc = %d\t npts = %d\n",nproc,npts);
     for(j=0; j<ntimers; j++){
-      printf(", \t%f\t%e",timing_array_global[j],error_array[j]); 
+      printf("v%d \ttime = %f\t L2_error = %e\n",j,timing_array_global[j],error_array[j]); 
     }
     printf("\n");
   }
